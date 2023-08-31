@@ -6,7 +6,7 @@ fs.writeFileSync('new.txt','hello')
 console.log(__dirname)
 console.log(__filename)
 
-fs.mkdirSync
-fs.rmdirSync
-fs.existsSync // for file and dir
-fs,fs.readdirSync
+// fs.mkdirSync
+// fs.rmdirSync
+// fs.existsSync // for file and dir
+// fs,fs.readdirSync
