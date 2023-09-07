@@ -4,8 +4,7 @@ const app = express()
 
 app.use(express.json())
 
-app.use(
-})
+//app.use()
 
 app.get('/', (req, res) => {
     res.send('hello from scalar topics')
