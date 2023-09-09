@@ -6,27 +6,35 @@ mongoose.connect('mongodb://127.0.0.1/testDatabase')
 // using promise to catch errors
 
 const courseSchema = new mongoose.Schema({
-    name : String,
-    creator: String,
+    name : {type:String, required:true},
+    tags : {type:Array ,validate:{
+            validator: function(tags){
+                return tags.length > 1
+        }}},
+    creator: {type:String, required:true},
     publishedDate: {type:Date, default:Date.now},
-    isPublished: Boolean
-})
+    isPublished: {type:Boolean, required:true}, 
+    rating: {type: Number, required: function(){return this.isPublished}} 
+});
 
 const Course = mongoose.model('Course', courseSchema)
 
 
 async function createCourse(){
     const course = new Course({
-        name: 'java',
-        creator: 'ABC',
-        isPublished: true
+        name: 'mongoDB',
+        creator: 'who',
+        isPublished: true,
+        
+        tags: ['NoSQl'],
+        rating: 5
     })
     
     const result = await course.save()
     console.log(result)
 }
 
-// createCourse()
+createCourse()
 
 async function getCourse(){
     const courses = await Course.find({creator:'anish'}).select({name:1}) 
